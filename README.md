@@ -1,59 +1,98 @@
-# Mulheres no Circo
+<h1 align="center">🎪 Mulheres no Circo</h1>
 
-Plataforma web para mapeamento, visibilidade e conexão de **mulheres das artes circenses** —
-um diretório público de artistas com perfil profissional, portfólio de trabalhos e área de gestão.
+<p align="center">
+  <img src="assets/img/logo.svg" width="90" alt="Logo Mulheres no Circo">
+</p>
 
-## Stack
-- PHP 8 (puro, sem framework) + PDO
-- MySQL / MariaDB
-- Bootstrap 5 + Bootstrap Icons
-- Google Fonts (Fraunces + Inter)
+<p align="center">
+  <b>Plataforma de mapeamento, visibilidade e conexão para mulheres das artes circenses no Brasil.</b><br>
+  Um diretório público de artistas com perfil profissional, portfólio de trabalhos e área para produtores(as)/curadores(as).
+</p>
 
-## Estrutura de pastas
+<p align="center">
+  🔗 <b>Demo ao vivo:</b> <a href="https://mulheresnocirco.rf.gd">mulheresnocirco.rf.gd</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/PHP-8-777BB4?logo=php&logoColor=white">
+  <img src="https://img.shields.io/badge/MySQL-MariaDB-4479A1?logo=mysql&logoColor=white">
+  <img src="https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white">
+  <img src="https://img.shields.io/badge/sem%20framework-PHP%20puro%20%2B%20PDO-2b2533">
+</p>
+
+---
+
+## ✨ Funcionalidades
+
+**Para o público**
+- 🏠 Página inicial e seção institucional (Sobre, Apoie, Contato, Política de Privacidade)
+- 🔍 **Diretório de artistas** com busca e filtros (área, cidade, disponibilidade) e paginação
+- 👩‍🎤 **Perfil público** da artista com biografia, especialidades, redes e portfólio de trabalhos (foto, vídeo do YouTube, PDF)
+- 📨 Formulário de **contato** funcional e botão flutuante de **WhatsApp**
+
+**Para as artistas**
+- 🔐 Cadastro/login com consentimento **LGPD**
+- 🧰 **Painel** com perfil em modo leitura + edição sob demanda
+- 🎯 **Catálogo de modalidades circenses** (10 categorias, ~150 habilidades) selecionável em chips
+- 🖼️ Gestão de **trabalhos** (imagem, vídeo, PDF) e materiais para curadoria
+
+**Para produtores(as) / curadores(as)**
+- 🪪 Cadastro próprio e **Área do Produtor**
+- ⬇️ **Download de materiais** das artistas (protegido por login) e **ficha de perfil em PDF** (estilo LinkedIn)
+- 🔖 **Curadoria salva** (favoritar artistas) + recebimento de novidades (consentimento por e‑mail/WhatsApp)
+
+**Administração**
+- 🛠️ Painel admin com gestão de usuárias, moderação de trabalhos, mensagens de contato e logs
+
+---
+
+## 🛠️ Tecnologias
+- **PHP 8** puro com **PDO** (sem framework)
+- **MySQL / MariaDB** (charset `utf8mb4`)
+- **Bootstrap 5** + **Bootstrap Icons**
+- **Google Fonts** (Fraunces + Inter)
+- Design system próprio com *tokens* CSS (tema "Coral & Turquesa")
+
+## 🔒 Boas práticas de segurança
+- Senhas com **`password_hash`** (bcrypt)
+- **Prepared statements** (PDO) em todas as consultas
+- Proteção **CSRF** nas ações de escrita
+- **Rate limiting** no login + `session_regenerate_id`
+- Validação de upload por extensão, tamanho e **conteúdo real** (`getimagesize`)
+- **Download protegido** (sem hotlink) e `.htaccess` bloqueando `config/`, `includes/` e execução em `uploads/`
+- Credenciais do banco **fora do versionamento** (`config/db-credentials.php` no `.gitignore`)
+- Consentimento **LGPD** no cadastro
+
+---
+
+## 📁 Estrutura
 ```
 mulheres-no-circo/
-├── index.php, diretorio.php, artista.php …   # Páginas/rotas públicas (raiz = web root)
-├── login.php, cadastro.php, perfil.php …      # Autenticação e painel da artista
-├── admin.php                                  # Área administrativa
-├── config/
-│   └── database.php                           # Conexão PDO (ajustar no deploy)
-├── includes/
-│   ├── auth.php, csrf.php, log.php, helpers.php   # Lógica/segurança
-│   ├── header.php, footer.php                     # Layout
-│   ├── seletor-modalidades.php                    # Componente reutilizável
-│   └── modalidades.php, redes.php                 # Dados/config de conteúdo
-├── assets/
-│   ├── css/style.css                          # Tema (design tokens)
-│   └── js/modalidades.js                      # JS do seletor de modalidades
-├── uploads/                                   # Mídia enviada (avatars, trabalhos, apresentacoes)
-├── sql/                                        # Scripts de banco e dump de deploy
-└── .htaccess                                   # Segurança / DirectoryIndex
+├── *.php                       # Páginas/rotas (raiz = web root)
+├── config/                     # Conexão PDO (credenciais separadas)
+├── includes/                   # Lógica, layout e componentes reutilizáveis
+├── assets/css · assets/js · assets/img
+├── uploads/                    # Mídia enviada (avatars, trabalhos, apresentações)
+├── sql/                        # Scripts de banco e dump utf8mb4
+└── .htaccess                   # Segurança / DirectoryIndex
 ```
 
-**Separação por responsabilidade:** páginas na raiz (o InfinityFree serve a partir de `htdocs`),
-lógica/parciais em `includes/`, configuração em `config/`, estáticos em `assets/`,
-mídia em `uploads/`, banco em `sql/`.
+## ▶️ Rodando localmente (XAMPP)
+1. Coloque a pasta em `C:\xampp\htdocs\mulheres-no-circo`.
+2. Suba **Apache** e **MySQL**.
+3. Crie o banco `mulheres_no_circo` (utf8mb4) e importe `sql/mulheres_no_circo_utf8mb4.sql`.
+4. Acesse `http://localhost/mulheres-no-circo`.
 
-## Banco de dados
-1. Crie o banco `mulheres_no_circo` (utf8mb4).
-2. Importe `sql/mulheres_no_circo_utf8mb4.sql`.
-   - Scripts auxiliares: `migracao-utf8mb4.sql`, `fase3-evolucao.sql`, `padronizar-areas.sql`.
+> Credenciais locais padrão (XAMPP): `root` / sem senha. Para produção, crie `config/db-credentials.php` a partir do `db-credentials.example.php`.
 
-## Ambiente local (XAMPP)
-- Coloque a pasta em `C:\xampp\htdocs\mulheres-no-circo`.
-- Inicie Apache + MySQL no painel do XAMPP.
-- Acesse: `http://localhost/mulheres-no-circo`.
-- Credenciais de teste: senha `12345678` (admin: thaisoliveira.rosalina@gmail.com).
+## 🚀 Deploy
+Compatível com qualquer hospedagem **PHP + MySQL** (publicado no InfinityFree).
+Basta importar o dump, ajustar `config/db-credentials.php` e enviar os arquivos para o `htdocs`.
 
-## Configuração para deploy (InfinityFree)
-- Edite `config/database.php` com host/usuário/senha do InfinityFree.
-- Importe o dump utf8mb4 pelo phpMyAdmin.
-- Os `.htaccess` já protegem `config/`, `includes/`, `sql/` e impedem execução em `uploads/`.
+---
 
-## Segurança implementada
-- Senhas com `password_hash` (bcrypt).
-- Prepared statements (PDO) em todas as consultas.
-- Proteção CSRF nas ações de escrita.
-- Rate limiting no login; `session_regenerate_id` ao autenticar.
-- Validação de upload por extensão, tamanho e conteúdo real (`getimagesize`).
-- Consentimento LGPD no cadastro.
+## 👩‍💻 Autoria
+Idealização e desenvolvimento: **Thais Oliveira** — Central de Produção Cultural.
+Realização: **Circoteca** · **Cia Gêmea** · **Tô Feito Estúdio Criativo**.
+
+<p align="center"><i>Dar nome, rosto e voz às mulheres do circo é um ato de memória e de justiça. 🎪</i></p>
