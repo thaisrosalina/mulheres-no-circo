@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 480" role="img" aria-label="Ilustração de artista circense no lyra (provisória)">
+  <defs>
+    <radialGradient id="spot" cx="50%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- holofote -->
+  <ellipse cx="180" cy="200" rx="170" ry="220" fill="url(#spot)"/>
+
+  <!-- cabo do lyra -->
+  <line x1="180" y1="20" x2="180" y2="80" stroke="#ffffff" stroke-width="4" opacity="0.85"/>
+
+  <!-- argola (lyra) -->
+  <circle cx="180" cy="250" r="120" fill="none" stroke="#ffffff" stroke-width="9" opacity="0.95"/>
+
+  <!-- figura (line art, traços arredondados) -->
+  <g fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+    <!-- tronco -->
+    <path d="M180 150 L180 250"/>
+    <!-- braços subindo até a argola -->
+    <path d="M180 168 Q150 135 120 152"/>
+    <path d="M180 168 Q210 135 240 152"/>
+    <!-- pernas: uma estendida, outra dobrada (pose) -->
+    <path d="M180 250 Q150 300 130 360"/>
+    <path d="M180 250 Q225 285 295 300"/>
+  </g>
+  <!-- cabeça -->
+  <circle cx="180" cy="132" r="20" fill="#ffffff"/>
+
+  <!-- faíscas / luzes do circo -->
+  <path d="M300 120 l4 12 12 4 -12 4 -4 12 -4 -12 -12 -4 12 -4 z" fill="#ffc24b"/>
+  <circle cx="70" cy="150" r="5" fill="#ffc24b"/>
+  <circle cx="300" cy="360" r="6" fill="#f4564e"/>
+  <circle cx="60" cy="330" r="4" fill="#ffffff" opacity="0.8"/>
+</svg>

@@ -1,0 +1,2 @@
+# Bloqueia acesso direto aos includes (devem ser chamados via require)
+Require all denied

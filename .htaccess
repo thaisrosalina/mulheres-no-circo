@@ -1,0 +1,20 @@
+# ============================================================
+# Mulheres no Circo — configuração Apache (XAMPP / InfinityFree)
+# ============================================================
+
+Options -Indexes
+
+# Página inicial padrão
+DirectoryIndex index.php
+
+# Bloqueia acesso a arquivos sensíveis
+<FilesMatch "\.(sql|md|gitignore|log)$">
+    Require all denied
+</FilesMatch>
+
+# Cabeçalhos de segurança básicos
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

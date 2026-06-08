@@ -1,0 +1,8 @@
+# Uploads: servir mídia, mas NUNCA executar scripts (proteção contra webshell)
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+<FilesMatch "\.(php|phtml|phar|php[0-9]|cgi|pl|py|sh|asp|aspx)$">
+    Require all denied
+</FilesMatch>

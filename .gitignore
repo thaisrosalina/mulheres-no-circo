@@ -1,0 +1,17 @@
+# Mídia enviada pelas usuárias (não versionar)
+/uploads/avatars/*
+/uploads/trabalhos/*
+/uploads/apresentacoes/*
+!/uploads/avatars/.gitkeep
+!/uploads/trabalhos/.gitkeep
+!/uploads/apresentacoes/.gitkeep
+
+# Credenciais do banco (cada ambiente tem a sua)
+/config/db-credentials.php
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
